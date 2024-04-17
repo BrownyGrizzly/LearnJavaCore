@@ -64,3 +64,18 @@ public class PrimitiveAndObject {
         System.out.println("objectInt1.equals(objectInt2): " + objectInt1.equals(objectInt2)); // So sánh giá trị
     }
 }
+class TestObject {
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public TestObject(String description) {
+        this.description = description;
+    }
+}
