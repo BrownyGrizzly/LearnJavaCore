@@ -1,3 +1,5 @@
+package String;
+
 public class LearnString {
     public static void main(String[] args) {
         String str1 = "Hello"; //Sử dụng literal String

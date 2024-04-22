@@ -1,3 +1,5 @@
+package StaticFinal;
+
 public class StaticFinalDemo {
     // Biến Static
     public static int staticVar = 100;
