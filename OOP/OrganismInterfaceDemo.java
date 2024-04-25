@@ -1,8 +1,10 @@
 package OOP;
 
 public interface OrganismInterfaceDemo {
-    public void eat();
-    public void drink();
-    public void sleep();
-    public int age = 0;
+    void eat();
+    void drink();
+    void sleep();
+    int age = 0;
+    void getNum(String num);
+    String getOg(String og);
 }

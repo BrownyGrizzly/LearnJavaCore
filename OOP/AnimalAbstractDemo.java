@@ -34,5 +34,10 @@ public abstract class AnimalAbstractDemo {
     public void setGroup(String group) {
         this.group = group;
     }
+
+    public void getNum(String num) {}
+
     public abstract void play();
+
+    public void getOg(String og) {};
 }
