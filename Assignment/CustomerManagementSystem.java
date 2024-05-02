@@ -107,38 +107,34 @@ public class CustomerManagementSystem {
     private static void editCustomerInformation(Scanner scanner) {
         System.out.print("Enter phone number of customer to edit: ");
         String phoneNumber = scanner.nextLine();
-
         Customer customer = customers.get(phoneNumber);
         if (customer != null) {
             System.out.println("Enter new information for customer:");
             System.out.print("New name (leave empty to keep current): ");
             String newName = scanner.nextLine();
-            while (!newName.isEmpty() && !isValidName(newName)) {
-                System.out.println("Invalid name. Name cannot be empty or contain special characters.");
-                System.out.print("New name (leave empty to keep current): ");
-                newName = scanner.nextLine();
-            }
             if (!newName.isEmpty()) {
                 customer.setName(newName);
             }
-
             System.out.print("New email (leave empty to keep current): ");
             String newEmail = scanner.nextLine();
-            while (!newEmail.isEmpty() && !isValidEmail(newEmail)) {
-                System.out.println("Invalid email format.");
-                System.out.print("New email (leave empty to keep current): ");
-                newEmail = scanner.nextLine();
-            }
             if (!newEmail.isEmpty()) {
                 customer.setEmail(newEmail);
             }
-
+            System.out.print("New phone number (leave empty to keep current): ");
+            String newPhoneNumber = scanner.nextLine();
+            if (!newPhoneNumber.isEmpty()) {
+                if (customers.containsKey(newPhoneNumber)) {
+                    System.out.println("Phone number already exists for another customer. Please choose a different one.");
+                } else {
+                    customers.remove(phoneNumber);
+                    customers.put(newPhoneNumber, customer);
+                }
+            }
             System.out.println("Customer information updated successfully.");
         } else {
             System.out.println("Customer with phone number " + phoneNumber + " not found.");
         }
     }
-
 
     private static void deleteCustomer(Scanner scanner) {
         System.out.print("Enter phone number of customer to delete: ");
