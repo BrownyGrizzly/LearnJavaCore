@@ -71,14 +71,21 @@ public class CustomerManagementSystem {
                     System.out.println("Invalid email format.");
                 }
             } while (!isValidEmail(email));
+
             String phoneNumber;
+            boolean phoneExists;
             do {
                 System.out.print("Enter customer phone number: ");
                 phoneNumber = scanner.nextLine();
                 if (!isValidPhoneNumber(phoneNumber)) {
                     System.out.println("Invalid phone number format.");
+                } else {
+                    phoneExists = customers.containsKey(phoneNumber);
+                    if (phoneExists) {
+                        System.out.println("Phone number already exists for another customer. Please choose a different one.");
+                    }
                 }
-            } while (!isValidPhoneNumber(phoneNumber));
+            } while (!isValidPhoneNumber(phoneNumber) || customers.containsKey(phoneNumber));
 
             Customer newCustomer = new Customer(name, email, phoneNumber);
             customers.put(phoneNumber, newCustomer);
@@ -135,6 +142,8 @@ public class CustomerManagementSystem {
                     customers.remove(phoneNumber);
                     customers.put(newPhoneNumber, customer);
                 }
+            } else {
+                System.out.println("Keeping the current phone number.");
             }
             System.out.println("Customer information updated successfully.");
         } else {
