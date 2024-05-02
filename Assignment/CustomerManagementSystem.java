@@ -51,8 +51,14 @@ public class CustomerManagementSystem {
 
     private static void addCustomer(Scanner scanner) {
         while (true) {
-            System.out.print("Enter customer name (or type 'done' to finish adding customers): ");
-            String name = scanner.nextLine();
+            String name;
+            do {
+                System.out.print("Enter customer name (or type 'done' to finish adding customers): ");
+                name = scanner.nextLine();
+                if (!isValidName(name)) {
+                    System.out.println("Invalid name format. Please try again.");
+                }
+            } while (!isValidName(name));
             if (name.equalsIgnoreCase("done")) {
                 break;
             }
@@ -146,16 +152,6 @@ public class CustomerManagementSystem {
         } else {
             System.out.println("Customer with phone number " + phoneNumber + " not found.");
         }
-    }
-
-    private static boolean validateCustomerData(String name, String email, String phoneNumber) {
-        if (name.isEmpty() || email.isEmpty() || phoneNumber.isEmpty()) {
-            return false;
-        }
-        if (!isValidPhoneNumber(phoneNumber) || !isValidEmail(email)) {
-            return false;
-        }
-        return true;
     }
 
     private static boolean isValidPhoneNumber(String phoneNumber) {
